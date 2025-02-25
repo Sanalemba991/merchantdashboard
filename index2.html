@@ -325,8 +325,8 @@
 
                 <!-- Sub Menu -->
                 <ul class="nav sub-menu">
-                  <li><a href="./pages/pages/authentication/merchantact.html">Merchant Panel</a></li>
-                  <li><a href="./pages/pages/authentication/transaction.html">Merchant Transaction</a></li>
+                  <li><a href="/merchant.html">Create Merchant</a></li>
+                  <li><a href="">Merchant Transaction</a></li>
               
                 
                 </ul>
@@ -431,63 +431,93 @@
                     
       
                              
-      
-                    <div class="col-12">
-                      <div class="card mb-30">
-                          <div class="card-body pt-30">
-                              <h4 class="font-20">Current Status</h4>
-                          </div>
-                          <div class="table-responsive">
-                              <!-- Invoice List Table -->
-                              <table class="text-nowrap table-bordered dh-table">
-                                  <thead>
-                                      <tr>
-                                          <th>Merchant Name</th>
-                                          <th>USDT</th>
-                                          <th>Date</th>
-                                          <th>INR</th>
-                                          <th>Actions</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr>
-                                          <td>Romeo</td>
-                                          <td>120</td>
-                                          <td>2025-02-22</td>
-                                          <td>9870.50</td>
-                                          <td><a href="#" class="details-btn">View Details <i class="icofont-arrow-right"></i></a></td>
-                                      </tr>
-                                      <tr>
-                                          <td>Suraj</td>
-                                          <td>56.5</td>
-                                          <td>2025-02-20</td>
-                                          <td>4683.75</td>
-                                          <td><a href="#" class="details-btn">View Details <i class="icofont-arrow-right"></i></a></td>
-                                      </tr>
-                                      <tr>
-                                          <td>Tom</td>
-                                          <td>250</td>
-                                          <td>2025-02-18</td>
-                                          <td>20625</td>
-                                          <td><a href="#" class="details-btn">View Details <i class="icofont-arrow-right"></i></a></td>
-                                      </tr>
-                                      <tr>
-                                          <td>Jenifer</td>
-                                          <td>175</td>
-                                          <td>2025-02-15</td>
-                                          <td>14381.25</td>
-                                          <td><a href="#" class="details-btn">View Details <i class="icofont-arrow-right"></i></a></td>
-                                      </tr>
-                                      <tr>
-                                          <td>Christina</td>
-                                          <td>95</td>
-                                          <td>2025-02-10</td>
-                                          <td>7813.50</td>
-                                          <td><a href="#" class="details-btn">View Details <i class="icofont-arrow-right"></i></a></td>
-                                      </tr>
-                                  </tbody>
-                              </table>
-                              <!-- End Invoice List Table -->
+                    <h4>Merchant Transaction Details</h4>
+                    <label for="statusFilter">Filter by Status:</label>
+                    <select id="statusFilter" onchange="filterTable()">
+                        <option value="">All</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Failed">Failed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Date</th>
+                                    <th>Transaction Type</th>
+                                    <th>Status</th>
+                                    <th>USDT</th>
+                                    <th>Country</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionBody">
+                                <tr><td>1639092711535414238</td><td>06.09.2025</td><td>Payment</td><td class="status completed">Completed</td><td>500.00</td><td>USA</td></tr>
+                                <tr><td>1624605698560068883</td><td>25.06.2025</td><td>Payment</td><td class="status failed">Failed</td><td>120.00</td><td>USA</td></tr>
+                                <tr><td>1620217296213070143</td><td>05.03.2025</td><td>Payment</td><td class="status completed">Completed</td><td>320.00</td><td>USA</td></tr>
+                                <tr><td>1639203812345612234</td><td>10.10.2025</td><td>Payment</td><td class="status completed">Completed</td><td>200.00</td><td>USA</td></tr>
+                                <tr><td>1624625891012378456</td><td>15.07.2025</td><td>Payment</td><td class="status failed">Failed</td><td>75.00</td><td>USA</td></tr>
+                                <tr><td>1639123456789023123</td><td>08.08.2025</td><td>Payment</td><td class="status pending">Pending</td><td>640.00</td><td>USA</td></tr>
+                                <tr><td>1624789012345678901</td><td>20.09.2025</td><td>Payment</td><td class="status completed">Completed</td><td>900.00</td><td>USA</td></tr>
+                                <tr><td>1624598765432109876</td><td>30.05.2025</td><td>Payment</td><td class="status completed">Completed</td><td>150.00</td><td>USA</td></tr>
+                                <tr><td>1624689012345676543</td><td>18.06.2025</td><td>Payment</td><td class="status cancelled">Cancelled</td><td>250.00</td><td>USA</td></tr>
+                                <tr><td>1624789567890123456</td><td>12.04.2025</td><td>Payment</td><td class="status failed">Failed</td><td>130.00</td><td>USA</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <script>
+                        function filterTable() {
+                            const filter = document.getElementById("statusFilter").value.toLowerCase();
+                            const rows = document.querySelectorAll("#transactionBody tr");
+                            rows.forEach(row => {
+                                const status = row.querySelector(".status").textContent.toLowerCase();
+                                row.style.display = filter === "" || status.includes(filter) ? "" : "none";
+                            });
+                        }
+                    </script>
+                    
+                    <!-- CSS for Responsiveness -->
+                    <style>
+                        .table-responsive {
+                            width: 100%;
+                            overflow-x: auto;
+                        }
+                    
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 1em;
+                        }
+                    
+                        th, td {
+                            padding: 12px;
+                            text-align: left;
+                            border: 1px solid #ddd;
+                        }
+                    
+                        th {
+                            background-color: #182335;
+                        }
+                    
+                        /* Make table scrollable horizontally on small screens */
+                        @media screen and (max-width: 768px) {
+                            table {
+                                width: 100%;
+                                display: block;
+                                overflow-x: auto;
+                            }
+                    
+                            th, td {
+                                white-space: nowrap;
+                            }
+                    
+                            select {
+                                margin-bottom: 10px;
+                            }
+                        }
+                    </style>
+                                           <!-- End Invoice List Table -->
                           </div>
                       </div>    
                   </div>
