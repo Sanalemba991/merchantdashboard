@@ -513,7 +513,32 @@
 
                    </style>
                     <div id="transactionContainer" style="display: none;">
-                        <label for="statusFilter">Filter by Status:</label>
+                        <label class="lo" for="statusFilter">Filter by Status:</label>
+                        <style>
+                          .lo {
+                              color: white;
+                              margin-top: 7px;
+                              margin-bottom: 4px;
+                          }
+                      
+                          @media (max-width: 768px) {
+                              .lo {
+                                  font-size: 14px; /* Adjust font size for smaller screens */
+                                  margin-top: 5px;
+                                  margin-bottom: 3px;
+                              }
+                          }
+                      
+                          @media (max-width: 480px) {
+                              .lo {
+                                  font-size: 12px; /* Further adjustment for mobile screens */
+                                  margin-top: 4px;
+                                  margin-bottom: 2px;
+                              }
+                          }
+                      </style>
+                      
+                  
                         <select id="statusFilter" onchange="filterTable()">
                             <option value="">All</option>
                             <option value="Completed">Completed</option>
