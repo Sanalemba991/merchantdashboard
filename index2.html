@@ -485,6 +485,33 @@
 
 
                   </style>
+                   <div id="spinner"></div>
+                   <style>
+                   #spinner {
+    display: none;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3); /* Light white transparent border */
+    border-left-color: white; /* Solid white color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: fixed; /* Fixed to ensure it's centered on the screen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Ensures it's above other content */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#transactionContainer {
+    display: none;
+}
+
+                   </style>
                     <div id="transactionContainer" style="display: none;">
                         <label for="statusFilter">Filter by Status:</label>
                         <select id="statusFilter" onchange="filterTable()">
@@ -526,16 +553,22 @@
                 
                 <script>
                     function toggleTable() {
-                        const allowedURL = "https://Bifiattransaction.com";
-                        const userInput = document.getElementById("authInput").value.trim();
+            const allowedURL = "https://Bifiattransaction.com";
+            const userInput = document.getElementById("authInput").value.trim();
+            const container = document.getElementById("transactionContainer");
+            const spinner = document.getElementById("spinner");
+
+            if (userInput === allowedURL) {
+                spinner.style.display = "block"; // Show spinner
                 
-                        if (userInput === allowedURL) {
-                            const container = document.getElementById("transactionContainer");
-                            container.style.display = container.style.display === "none" ? "block" : "none";
-                        } else {
-                            alert("Invalid API, You have to give the real API.");
-                        }
-                    }
+                setTimeout(() => {
+                    spinner.style.display = "none"; // Hide spinner
+                    container.style.display = container.style.display === "none" ? "block" : "none";
+                }, 3000); // 3-second delay
+            } else {
+                alert("Invalid API, You have to give the real API.");
+            }
+        }
                 
                     function filterTable() {
                         const filter = document.getElementById("statusFilter").value.toLowerCase();
