@@ -413,96 +413,182 @@
                   </div>
 
                   <div class="col-12">
-                  
-                    
-      
-                             
                     <h4>Merchant Transaction Details</h4>
-                    <label for="statusFilter">Filter by Status:</label>
-                    <select id="statusFilter" onchange="filterTable()">
-                        <option value="">All</option>
-                        <option value="Completed">Completed</option>
-                        <option value="Failed">Failed</option>
-                        <option value="Cancelled">Cancelled</option>
-                    </select>
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Date</th>
-                                    <th>Transaction Type</th>
-                                    <th>Status</th>
-                                    <th>USDT</th>
-                                    <th>Country</th>
-                                </tr>
-                            </thead>
-                            <tbody id="transactionBody">
-                                <tr><td>1639092711535414238</td><td>06.09.2025</td><td>Payment</td><td class="status completed">Completed</td><td>500.00</td><td>USA</td></tr>
-                                <tr><td>1624605698560068883</td><td>25.06.2025</td><td>Payment</td><td class="status failed">Failed</td><td>120.00</td><td>USA</td></tr>
-                                <tr><td>1620217296213070143</td><td>05.03.2025</td><td>Payment</td><td class="status completed">Completed</td><td>320.00</td><td>USA</td></tr>
-                                <tr><td>1639203812345612234</td><td>10.10.2025</td><td>Payment</td><td class="status completed">Completed</td><td>200.00</td><td>USA</td></tr>
-                                <tr><td>1624625891012378456</td><td>15.07.2025</td><td>Payment</td><td class="status failed">Failed</td><td>75.00</td><td>USA</td></tr>
-                                <tr><td>1639123456789023123</td><td>08.08.2025</td><td>Payment</td><td class="status pending">Pending</td><td>640.00</td><td>USA</td></tr>
-                                <tr><td>1624789012345678901</td><td>20.09.2025</td><td>Payment</td><td class="status completed">Completed</td><td>900.00</td><td>USA</td></tr>
-                                <tr><td>1624598765432109876</td><td>30.05.2025</td><td>Payment</td><td class="status completed">Completed</td><td>150.00</td><td>USA</td></tr>
-                                <tr><td>1624689012345676543</td><td>18.06.2025</td><td>Payment</td><td class="status cancelled">Cancelled</td><td>250.00</td><td>USA</td></tr>
-                                <tr><td>1624789567890123456</td><td>12.04.2025</td><td>Payment</td><td class="status failed">Failed</td><td>130.00</td><td>USA</td></tr>
-                            </tbody>
-                        </table>
+
+                      
+                <input id="authInput" class="sam" type="text" placeholder="Enter URL to unlock..." />
+
+                <button class="ram" onclick="toggleTable()">Show Transactions</button>
+                <style>
+  .sam {
+
+    margin-top: 20px;
+    width: 100%; /* Ensures full responsiveness */
+    max-width: 280px;
+    padding: 8px;
+    border: 1px solid #182335;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+.sam::placeholder {
+    color:black; /* Light gray */
+
+}
+
+.sam:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 91, 187, 0.5);
+}
+
+.ram {
+    padding: 12px 20px;
+    background-color: #182335;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-left: 10px;
+}
+
+/* Tablet View */
+@media screen and (max-width: 768px) {
+    .sam {
+        width: 90%;
+        max-width: none;
+        font-size: 14px;
+    }
+
+    .ram {
+        width: 60%;
+        margin-left: 0;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+
+/* Mobile View */
+@media screen and (max-width: 480px) {
+    .sam {
+        padding: 6px;
+        font-size: 14px;
+    }
+
+    .ram {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+
+                  </style>
+                    <div id="transactionContainer" style="display: none;">
+                        <label for="statusFilter">Filter by Status:</label>
+                        <select id="statusFilter" onchange="filterTable()">
+                            <option value="">All</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Failed">Failed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                        
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Date</th>
+                                        <th>Transaction Type</th>
+                                        <th>Status</th>
+                                        <th>USDT</th>
+                                        <th>Country</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="transactionBody">
+                                    <tr><td>1639092711535414238</td><td>06.09.2025</td><td>Payment</td><td class="status completed">Completed</td><td>500.00</td><td>INDIA</td></tr>
+                                    <tr><td>1624605698560068883</td><td>25.06.2025</td><td>Payment</td><td class="status failed">Failed</td><td>120.00</td><td>USA</td></tr>
+                                    <tr><td>1620217296213070143</td><td>05.03.2025</td><td>Payment</td><td class="status completed">Completed</td><td>320.00</td><td>USA</td></tr>
+                                    <tr><td>1639203812345612234</td><td>10.10.2025</td><td>Payment</td><td class="status completed">Completed</td><td>200.00</td><td>JAPAN</td></tr>
+                                    <tr><td>1624625891012378456</td><td>15.07.2025</td><td>Payment</td><td class="status failed">Failed</td><td>75.00</td><td>USA</td></tr>
+                                    <tr><td>1639123456789023123</td><td>08.08.2025</td><td>Payment</td><td class="status pending">Pending</td><td>640.00</td><td>USA</td></tr>
+                                    <tr><td>1624789012345678901</td><td>20.09.2025</td><td>Payment</td><td class="status completed">Completed</td><td>900.00</td><td>RUSSIA</td></tr>
+                                    <tr><td>1624598765432109876</td><td>30.05.2025</td><td>Payment</td><td class="status completed">Completed</td><td>150.00</td><td>USA</td></tr>
+                                    <tr><td>1624689012345676543</td><td>18.06.2025</td><td>Payment</td><td class="status cancelled">Cancelled</td><td>250.00</td><td>CHINA</td></tr>
+                                    <tr><td>1624789567890123456</td><td>12.04.2025</td><td>Payment</td><td class="status failed">Failed</td><td>130.00</td><td>JAPAN</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    
-                    <script>
-                        function filterTable() {
-                            const filter = document.getElementById("statusFilter").value.toLowerCase();
-                            const rows = document.querySelectorAll("#transactionBody tr");
-                            rows.forEach(row => {
-                                const status = row.querySelector(".status").textContent.toLowerCase();
-                                row.style.display = filter === "" || status.includes(filter) ? "" : "none";
-                            });
+                </div>
+             
+                
+                <script>
+                    function toggleTable() {
+                        const allowedURL = "https://Bifiattransaction.com";
+                        const userInput = document.getElementById("authInput").value.trim();
+                
+                        if (userInput === allowedURL) {
+                            const container = document.getElementById("transactionContainer");
+                            container.style.display = container.style.display === "none" ? "block" : "none";
+                        } else {
+                            alert("Invalid API, You have to give the real API.");
                         }
-                    </script>
-                    
-                    <!-- CSS for Responsiveness -->
-                    <style>
-                        .table-responsive {
-                            width: 100%;
-                            overflow-x: auto;
-                        }
-                    
+                    }
+                
+                    function filterTable() {
+                        const filter = document.getElementById("statusFilter").value.toLowerCase();
+                        const rows = document.querySelectorAll("#transactionBody tr");
+                        rows.forEach(row => {
+                            const status = row.querySelector(".status").textContent.toLowerCase();
+                            row.style.display = filter === "" || status.includes(filter) ? "" : "none";
+                        });
+                    }
+                </script>
+                
+                
+                <style>
+                    .table-responsive {
+                        width: 100%;
+                        overflow-x: auto;
+                    }
+                
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin-bottom: 1em;
+                    }
+                
+                    th, td {
+                        padding: 12px;
+                        text-align: left;
+                        border: 1px solid #ddd;
+                    }
+                
+                    th {
+                        background-color: #182335;
+                        color: white;
+                    }
+                
+                 
+                    @media screen and (max-width: 768px) {
                         table {
                             width: 100%;
-                            border-collapse: collapse;
-                            margin-bottom: 1em;
+                            display: block;
+                            overflow-x: auto;
                         }
-                    
+                
                         th, td {
-                            padding: 12px;
-                            text-align: left;
-                            border: 1px solid #ddd;
+                            white-space: nowrap;
                         }
-                    
-                        th {
-                            background-color: #182335;
+                
+                        select {
+                            margin-bottom: 10px;
                         }
-                    
-                        /* Make table scrollable horizontally on small screens */
-                        @media screen and (max-width: 768px) {
-                            table {
-                                width: 100%;
-                                display: block;
-                                overflow-x: auto;
-                            }
-                    
-                            th, td {
-                                white-space: nowrap;
-                            }
-                    
-                            select {
-                                margin-bottom: 10px;
-                            }
-                        }
-                    </style>
+                    }
+                </style>
+                
                                            <!-- End Invoice List Table -->
                           </div>
                       </div>    

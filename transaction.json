@@ -1,0 +1,23 @@
+{
+    "transactions": [
+      {
+        "id": 1,
+        "timestamp": "2025-03-03T12:00:00Z",
+        "amount": "100.50",
+        "currency": "USDT",
+        "status": "Completed",
+        "from": "0x123abc...",
+        "to": "0x456def..."
+      },
+      {
+        "id": 2,
+        "timestamp": "2025-03-02T14:30:00Z",
+        "amount": "250.00",
+        "currency": "USDT",
+        "status": "Pending",
+        "from": "0x789ghi...",
+        "to": "0x101jkl..."
+      }
+    ]
+  }
+  

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USDT Transactions</title>
+</head>
+<body>
+    <h2>USDT Transactions</h2>
+    <button id="show-transactions">Show Transactions</button>
+<input>
+    <ul id="transaction-list"></ul>
+
+    <script>
+        // Sample JSON data (can be fetched from an API or file)
+        const transactions = {
+            "transactions": [
+                {
+                    "id": 1,
+                    "timestamp": "2025-03-03T12:00:00Z",
+                    "amount": "100.50",
+                    "currency": "USDT",
+                    "status": "Completed",
+                    "from": "0x123abc...",
+                    "to": "0x456def..."
+                },
+                {
+                    "id": 2,
+                    "timestamp": "2025-03-02T14:30:00Z",
+                    "amount": "250.00",
+                    "currency": "USDT",
+                    "status": "Pending",
+                    "from": "0x789ghi...",
+                    "to": "0x101jkl..."
+                }
+            ]
+        };
+
+        document.getElementById("show-transactions").addEventListener("click", () => {
+            const transactionList = document.getElementById("transaction-list");
+            transactionList.innerHTML = ""; // Clear previous data if button is clicked again
+
+            transactions.transactions.forEach(tx => {
+                const listItem = document.createElement("li");
+                listItem.textContent = `ID: ${tx.id} | Amount: ${tx.amount} USDT | Status: ${tx.status}`;
+                listItem.style.cursor = "pointer";
+
+                listItem.addEventListener("click", () => {
+                    alert(`Transaction Details:\n\nID: ${tx.id}\nAmount: ${tx.amount} USDT\nStatus: ${tx.status}\nFrom: ${tx.from}\nTo: ${tx.to}\nTimestamp: ${tx.timestamp}`);
+                });
+
+                transactionList.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>
