@@ -559,12 +559,12 @@
             const spinner = document.getElementById("spinner");
 
             if (userInput === allowedURL) {
-                spinner.style.display = "block"; // Show spinner
+                spinner.style.display = "block"; 
                 
                 setTimeout(() => {
-                    spinner.style.display = "none"; // Hide spinner
+                    spinner.style.display = "none"; 
                     container.style.display = container.style.display === "none" ? "block" : "none";
-                }, 3000); // 3-second delay
+                }, 3000); 
             } else {
                 alert("Invalid API, You have to give the real API.");
             }
